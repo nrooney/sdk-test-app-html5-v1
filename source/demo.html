@@ -13,13 +13,13 @@ var discoveryServiceUriDefault="https://stage-exchange-test.apigee.net/gsma/v2/d
 var discoveryClientIDDefault="gZJ8mEnjoLiAgrfudHCEZvufOoafvf1S";
 var discoveryClientSecretDefault="oESO7jLriPaF3qKA";
 var logoServiceUriDefault="https://sb1.exchange.gsma.com/v1/logo";
-var redirect_uriDefault='http://mc.mobilesites.net/authorised.html';
+var redirect_uriDefault='http://localhost:8000/authorised.html';
 
 var discoveryServiceUri="https://stage-exchange-test.apigee.net/gsma/v2/discovery";
 var discoveryClientID="gZJ8mEnjoLiAgrfudHCEZvufOoafvf1S";
 var discoveryClientSecret="oESO7jLriPaF3qKA";
 var logoServiceUri="https://sb1.exchange.gsma.com/v1/logo";
-var redirect_uri='http://mc.mobilesites.net/authorised.html';
+var redirect_uri='http://localhost:8000/authorised.html';
 
 var apiClientID=null;
 var apiClientSecret=null;
@@ -36,7 +36,7 @@ function startPassiveDiscovery() {
     var encrypt="basic";
     var sourceIP=null;
     var msisdn=null;
-    var redirectUri="http://mc.mobilesites.net/discovered.html";
+    var redirectUri="http://localhost:8000/discovered.html";
 
     if (console.log) console.log("Starting discovery in passive mode "+location.href);
     
@@ -48,12 +48,12 @@ function passiveDiscoveryComplete(discoveryResult,status) {
     if (console.log) console.log("HTTP Status Code is "+status);
     if (console.log) console.log("Callback for "+JSON.stringify(discoveryResult));
     if (status==200) {
-    	if (discoveryResult.getTtl()) { console.log("TTL "+discoveryResult.getTtl()); }
-    	if (discoveryResult.getResponse()) {
-        	if (console.log) console.log("DiscoveryResponse "+JSON.stringify(discoveryResult.getResponse()));
-        	processDiscoveryResult(discoveryResult);
-        	$('#discoveryStatus').val('Discovered in passive mode');
-	}
+        if (discoveryResult.getTtl()) { console.log("TTL "+discoveryResult.getTtl()); }
+        if (discoveryResult.getResponse()) {
+            if (console.log) console.log("DiscoveryResponse "+JSON.stringify(discoveryResult.getResponse()));
+            processDiscoveryResult(discoveryResult);
+            $('#discoveryStatus').val('Discovered in passive mode');
+    }
     }
     
     getLogos();
@@ -84,7 +84,7 @@ function startActiveDiscovery() {
     var encrypt="basic";
     var sourceIP=null;
     var msisdn=null;
-    var redirectUri="http://mc.mobilesites.net/discovered.html";
+    var redirectUri="http://localhost:8000/discovered.html";
 
     if (console.log) console.log("Starting active discovery");
 
@@ -94,7 +94,7 @@ function startActiveDiscovery() {
 
 function discoveryRedirectCompleted(url) {
     if (!!window.postMessage && window.postMessage(url, '*')) {
-    	return true;
+        return true;
     }
 }
 
@@ -103,12 +103,12 @@ function activeDiscoveryComplete(discoveryResult, status) {
     if (console.log) console.log("Callback for "+JSON.stringify(discoveryResult));
     if (console.log) console.log("Location = "+window.location.href);
     if (status==200) {
-    	if (discoveryResult && !!discoveryResult.getTtl()) { console.log("TTL "+discoveryResult.getTtl()); }
-    	if (discoveryResult && !!discoveryResult.getResponse()) {
-        	if (console.log) console.log("DiscoveryResponse "+JSON.stringify(discoveryResult.getResponse()));
-        	processDiscoveryResult(discoveryResult);
-        	$('#discoveryStatus').val('Discovered in active mode');
-    	}
+        if (discoveryResult && !!discoveryResult.getTtl()) { console.log("TTL "+discoveryResult.getTtl()); }
+        if (discoveryResult && !!discoveryResult.getResponse()) {
+            if (console.log) console.log("DiscoveryResponse "+JSON.stringify(discoveryResult.getResponse()));
+            processDiscoveryResult(discoveryResult);
+            $('#discoveryStatus').val('Discovered in active mode');
+        }
     }
 
     getLogos();
@@ -151,7 +151,7 @@ function runAuthorization() {
     acr_values='2';
     login_hint=null;
     if (!!subscriberId) {
-	login_hint="ENCR_MSISDN:"+subscriberId;
+    login_hint="ENCR_MSISDN:"+subscriberId;
 if (console.log) console.log("login_hint="+login_hint);
     }
 
@@ -263,13 +263,13 @@ function atStartup() {
  
     discoveryDetails=getCacheDiscoveryItem();
     if (discoveryDetails) {
-    	if (discoveryDetails.getTtl()) { console.log("TTL "+discoveryDetails.getTtl()); }
-    	if (discoveryDetails.getResponse()) {
-        	if (console.log) console.log("DiscoveryResponse "+JSON.stringify(discoveryDetails.getResponse()));
-        	processDiscoveryResult(discoveryDetails);
-        	getLogos();
-       		$('#discoveryStatus').val('Using cached details');
-	}
+        if (discoveryDetails.getTtl()) { console.log("TTL "+discoveryDetails.getTtl()); }
+        if (discoveryDetails.getResponse()) {
+            if (console.log) console.log("DiscoveryResponse "+JSON.stringify(discoveryDetails.getResponse()));
+            processDiscoveryResult(discoveryDetails);
+            getLogos();
+            $('#discoveryStatus').val('Using cached details');
+    }
     }
 }
 
@@ -377,3 +377,4 @@ function storeConfiguration() {
 <p><input type="button" onClick="clearDiscoveryCache()" value="Clear discovery cache"/></p>
 
 </body>
+
