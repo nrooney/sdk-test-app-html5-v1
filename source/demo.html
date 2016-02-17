@@ -81,6 +81,13 @@ function logoComplete(logoResult) {
 }
 
 function startActiveDiscovery() {
+    console.log("IN FUNCTION startActiveDiscovery()"+           
+                        "\ndiscoveryServiceUri="+discoveryServiceUri+
+                        "\ndiscoveryClientID="+discoveryClientID+
+                        "\ndiscoveryClientSecret="+discoveryClientSecret+
+                        "\nlogoServiceUri="+logoServiceUri+
+                        "\nredirect_uri="+redirect_uri);
+    
     var encrypt="basic";
     var sourceIP=null;
     var msisdn=null;
@@ -214,6 +221,13 @@ function userinfoCallbackFunction(userinfo) {
 
 
 function processDiscoveryResult(discoveryResult) {
+    console.log("IN FUNCTION processDiscoveryResult()"+           
+                        "\ndiscoveryServiceUri="+discoveryServiceUri+
+                        "\ndiscoveryClientID="+discoveryClientID+
+                        "\ndiscoveryClientSecret="+discoveryClientSecret+
+                        "\nlogoServiceUri="+logoServiceUri+
+                        "\nredirect_uri="+redirect_uri);
+
     operatorIdentified=true;
     operatorName=discoveryResult.getResponse().getServing_operator();
     apiClientID=discoveryResult.getResponse().getClient_id();
@@ -235,6 +249,13 @@ function processDiscoveryResult(discoveryResult) {
 }
 
 function atStartup() {
+    console.log("IN FUNCTION atStart()"+           
+                        "\ndiscoveryServiceUri="+discoveryServiceUri+
+                        "\ndiscoveryClientID="+discoveryClientID+
+                        "\ndiscoveryClientSecret="+discoveryClientSecret+
+                        "\nlogoServiceUri="+logoServiceUri+
+                        "\nredirect_uri="+redirect_uri);
+
     if (console.log) console.log('defaults');
     if (console.log) console.log('discoveryServiceUri='+discoveryServiceUri);
     if (console.log) console.log('discoveryClientID='+discoveryClientID);
