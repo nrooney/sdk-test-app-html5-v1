@@ -16,3 +16,4 @@ If building this app there are some ways you should extend it. This app is very 
 * In our demo app the processDiscoveryResult(discoveryResult) function (in app.js) has a call to runAuthorization() to get the authorisation flowing straight after the discovery, it is at this point that discovery credentials should be stored so discovery does not need to run every time. 
 * User should be redirected to an authorised page when they login
 * The user's PCR details should be used to help maintain their session within the app.
+* add: verify the authorisation
