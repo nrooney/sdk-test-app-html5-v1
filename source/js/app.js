@@ -2,7 +2,6 @@
 var discoveryServiceUri = "https://discover.mobileconnect.io/gsma/v2/discovery";
 var discoveryClientID = "gZJ8mEnjoLiAgrfudHCEZvufOoafvf1S";
 var discoveryClientSecret = "oESO7jLriPaF3qKA";
-var redirect_uri = 'http://localhost:8000/authorised.html';
 var redirect_uri = 'http://mc.mobilesites.net/authorised.html';
 
 var apiClientID = null;
@@ -42,7 +41,7 @@ function startLogin() {
 }
 
 /* 
- * Start login, first assess whether we need to run discovery or can go straight to authorisation
+ * Start discovery
  */
 function startActiveDiscovery() {
     console.log("*********************************\nIN FUNCTION startActiveDiscovery()\n*********************************");
@@ -200,5 +199,7 @@ function processDiscoveryResult(discoveryResult) {
     if (authorizationEndpoint && authorizationEndpoint!=null) {
         operatorIdentified = true;
     }
+
+    runAuthorization(); //added for our demo to go straight to auth after discovery
 }
 

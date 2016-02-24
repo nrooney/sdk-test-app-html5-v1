@@ -13,3 +13,6 @@ For ways to improve the user exerience and extend the app please refer to the [M
 If building this app there are some ways you should extend it. This app is very basic and requires some additional elements for a better user experience. These are:
 
 * Caching the discovery endpoint: discovery is run everytime the app is run, this should be cached somewhere, other apps use local storage to do this.
+* In our demo app the processDiscoveryResult(discoveryResult) function (in app.js) has a call to runAuthorization() to get the authorisation flowing straight after the discovery, it is at this point that discovery credentials should be stored so discovery does not need to run every time. 
+* User should be redirected to an authorised page when they login
+* The user's PCR details should be used to help maintain their session within the app.
